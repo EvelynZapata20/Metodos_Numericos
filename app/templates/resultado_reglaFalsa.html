@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de Regla Falsa</title>
+</head>
+<body>
+    <h1>Resultado de Regla Falsa</h1>
+    <p>Respuesta: {{ respuesta }}</p>
+    <h2>Tabla de Resultados</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Iteration</th>
+                <th>xm</th>
+                <th>xi</th>
+                <th>xs</th>
+                <th>fm</th>
+                <th>fi</th>
+                <th>fs</th>
+                <th>E</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.n }}</td>
+                <td>{{ row.x_m }}</td>
+                <td>{{ row.x_i }}</td>
+                <td>{{ row.x_s }}</td>
+                <td>{{ row.f_m }}</td>
+                <td>{{ row.f_i }}</td>
+                <td>{{ row.f_s }}</td>
+                <td>{{ row.E }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row mt-4">
+        <div class="col-md 6">
+            <h2>Grafica de la funcion </h2>
+            <img src="{{ imagen_path }}" alt="Imagen">
+       </div>
+    </div>
+    <h1>Descargar Tabla Iteraciones</h1>
+    <form action="rf/descargar" method="post">
+        <button type="submit">Descargar</button>
+    </form>
+</body>
+</html>

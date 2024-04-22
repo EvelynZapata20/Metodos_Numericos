@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado de Secante</title>
+</head>
+<body>
+    <h1>Resultado de Secante</h1>
+    <p>Respuesta: {{ respuesta }}</p>
+    <h2>Tabla de Resultados</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Iteración</th>
+                <th>xn</th>
+                <th>f(xn)</th>
+                <th>Error</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.Iteration }}</td>
+                <td>{{ row.xn }}</td>
+                <td>{{ row.fxn }}</td>
+                <td>{{ row.E }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row mt-4">
+        <div class="col-md 6">
+            <h2>Grafica de la funcion </h2>
+            <img src="{{ imagen_path }}" alt="Imagen">
+       </div>
+    </div>
+    <h1>Descargar Tabla Iteraciones</h1>
+    <form action="secante/descargar" method="post">
+        <button type="submit">Descargar</button>
+    </form>
+</body>
+</html>
