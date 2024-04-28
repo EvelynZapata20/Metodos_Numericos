@@ -44,6 +44,7 @@
             <th>N</th>
             <th>xn</th>
             <th>fm</th>
+            <th>dfm</th>
             <th>E</th>
           </tr>
         </thead>
@@ -51,8 +52,9 @@
           {% for i in range(length) %}
             <tr>
                 <td>{{ N[i] }}</td>
-                <td>{{ xn[i] }}</td>
-                <td>{{ fm[i] }}</td>
+                <td>{{ xn[i].real }}</td>
+                <td>{{ fm[i].real }}</td>
+                <td>{{ dfm[i].real }}</td>
                 <td>{{ E[i] }}</td>
             </tr>
           {% endfor %}
