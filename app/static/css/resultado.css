@@ -1,0 +1,19 @@
+h1, p{
+    text-align: center;
+}
+
+.table-container {
+    float: left;
+    width: 50%;
+    margin-right: 20px;
+}
+
+.img-container {
+    float: right;
+    width: 50%;
+}
+
+.img-container img {
+    max-width: 100%;
+    height: auto;
+}

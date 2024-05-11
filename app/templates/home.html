@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi página</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+    <h1>Bienvenido a la página principal</h1>
+    <p>Por favor, seleccione una opción:</p>
+    <form action="/punto_fijo" method="GET">
+        <button type="submit">Punto Fijo</button>
+    </form>
+</body>
+</html>

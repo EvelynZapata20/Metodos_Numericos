@@ -1,4 +1,4 @@
-function [N, xn, fm, E] = pf(f_str, g_str, x0, Tol, niter)
+function [r, N, xn, fm, E] = pf(f_str, g_str, x0, Tol, niter)
     f = str2func(['@(x)' f_str]);
     g = str2func(['@(x)' g_str]);
     
@@ -22,10 +22,36 @@ function [N, xn, fm, E] = pf(f_str, g_str, x0, Tol, niter)
     end
     
     if fe == 0
-        fprintf('%f es raíz de f(x)\n', x0)
+        r= sprintf('%f es raíz de f(x)\n', x0);
     elseif error < Tol
-        fprintf('%f es una aproximación de una raíz de f(x) con una tolerancia= %f\n', x0, Tol)
+        r= sprintf('%f es una aproximación de una raíz de f(x) con una tolerancia= %f\n', x0, Tol);
     else
-        fprintf('Fracasó en %f iteraciones\n', niter)
+        r= sprintf('Fracasó en %f iteraciones\n', niter);
     end
+
+    currentDir = fileparts(mfilename('fullpath'));
+
+    tablesDir = fullfile(currentDir, '..', 'app', 'tables');
+    mkdir(tablesDir);
+    cd(tablesDir);
+    csv_file_path = fullfile(tablesDir, 'tabla_pf.csv');
+    T = table(N', xn', fm', E', 'VariableNames', {'Iteration', 'xn', 'fxn', 'E'}); 
+    writetable(T, csv_file_path);
+
+
+    fig = figure('Visible', 'off');
+    xplot = linspace(min(x0) - 10, max(x0) + 10, 1000);
+    hold on
+    yline(0);
+    plot(xplot, eval(subs(f, xplot)));
+    scatter(xn(end), f(xn(end)), 'r', 'filled'); 
+    img = getframe(gcf);
+    staticDir = fullfile(currentDir, '..', 'app', 'static');
+    mkdir(staticDir);
+    imgPath = fullfile(staticDir, 'grafica_pf.png');
+    imwrite(img.cdata, imgPath);
+    
+    hold off
+    close(fig);
+
 end

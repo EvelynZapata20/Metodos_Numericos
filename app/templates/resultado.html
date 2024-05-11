@@ -4,30 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultado</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultado.css') }}">
 </head>
 <body>
     <h1>Resultado</h1>
-    <table border="1">
-        <thead>
-          <tr>
-            <th>N</th>
-            <th>xn</th>
-            <th>fm</th>
-            <th>E</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for i in range(length) %}
+    <p>{{r}}</p>
+    <div class="table-container">
+      <table border="1">
+          <thead>
             <tr>
-                <td>{{ N[i] }}</td>
-                <td>{{ xn[i] }}</td>
-                <td>{{ fm[i] }}</td>
-                <td>{{ E[i] }}</td>
+              <th>N</th>
+              <th>xn</th>
+              <th>fm</th>
+              <th>E</th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {% for i in range(length) %}
+              <tr>
+                  <td>{{ N[i] }}</td>
+                  <td>{{ xn[i] }}</td>
+                  <td>{{ fm[i] }}</td>
+                  <td>{{ E[i] }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <br>
+        <form action="pf/descargar" method="post">
+          <button type="submit">Descargar</button>
+      </form>
+    </div>  
       
-      
+    <div class="image-container">
+      <div class="row mt-4">
+        <div class="col-md 6">
+            <img src="{{ imagen_path }}" alt="Imagen">
+        </div>
+      </div>
+    </div>
 </body>
 </html>
