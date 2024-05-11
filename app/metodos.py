@@ -55,5 +55,35 @@ def descargar_archivo_pf():
 def biseccion():
     pass
 
+@app.route('/multiple_roots', methods=['GET', 'POST'])
+def multiple_roots():
+    if request.method == 'POST':
+        fn = str(request.form['fn'])
+        xi = float(request.form['xi'])
+        tol = float(request.form['tol'])
+        k = int(request.form['k'])
+        et = str(request.form['et'])
+
+        eng.addpath(dir_matlab)
+        # Asume que multiple_roots retorna los valores necesarios o guarda los resultados en un archivo CSV
+        eng.raices_multiples(fn, xi, tol, k, et, nargout=0)  # Ejecuta el cálculo en MATLAB
+        
+        # Lee los resultados de un archivo CSV (asegúrate de que tu función MATLAB los guarde correctamente)
+        df = pd.read_csv(os.path.join(dir_tables, 'multiple_roots_results.csv'))
+        df = df.astype(str)
+        data = df.to_dict(orient='records')
+        df.to_excel(os.path.join(dir_tables, 'multiple_roots_results.xlsx'), index=False)
+
+        imagen_path = os.path.join('static', 'grafica_multiple_roots.png')
+
+        return render_template('resultado_raicesm.html', data=data, imagen_path=imagen_path)
+    
+    return render_template('formulario_raicesm.html')
+
+@app.route('/rm/descargar', methods=['POST'])
+def descargar_archivo_raicesm():
+    archivo_path = os.path.join(dir_tables, 'multiple_roots_results.xlsx')
+    return send_file(archivo_path, as_attachment=True)
+
 if __name__ == '__main__':
     app.run(debug=True)

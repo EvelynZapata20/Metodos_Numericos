@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calcular Múltiples Raíces</title>
+</head>
+<body>
+    <h1>Ingrese los datos para calcular las raíces múltiples</h1>
+    <form action="/multiple_roots" method="post">
+        <label for="fn">Función, fn (ej. x^2 - 4*x + 4):</label><br>
+        <input type="text" id="fn" name="fn" required><br><br>
+        
+        <label for="xi">Valor inicial, xi:</label><br>
+        <input type="text" id="xi" name="xi" required><br><br>
+        
+        <label for="tol">Tolerancia:</label><br>
+        <input type="text" id="tol" name="tol" required><br><br>
+        
+        <label for="k">Número máximo de iteraciones:</label><br>
+        <input type="text" id="k" name="k" required><br><br>
+        
+        <label for="et">Tipo de error:</label><br>
+        <select id="et" name="et">
+            <option value="Decimales Correctos">Decimales Correctos</option>
+            <option value="Cifras Significativas">Cifras Significativas</option>
+        </select><br><br>
+        
+        <input type="submit" value="Calcular">
+    </form>
+</body>
+</html>
